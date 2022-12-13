@@ -1,6 +1,7 @@
 <?php
 session_start();
 if(isset($_POST['submit'])){
+    header("content-type:image/jpeg");
     $name= ucfirst($_POST['name']);
     $course=ucfirst($_POST['course']);
     $start_date=$_POST['start_date'];
@@ -32,6 +33,7 @@ if(isset($_POST['submit'])){
             $filename="media/certificate-".time()."-".$name.".jpg";
             imagejpeg($image,$filename);
             imagedestroy($image);
+
             $_SESSION['filename']=$filename;
             $_SESSION['success']="Image Generated Successfully";
             header("Location:index.php");
